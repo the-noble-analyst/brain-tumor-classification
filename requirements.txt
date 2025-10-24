@@ -12,9 +12,10 @@ scikit-learn==1.5.2
 # ===========================
 # PyTorch and Vision Models
 # ===========================
-torch==2.5.1
-torchvision==0.20.1
-torchaudio==2.5.1
+torch==2.7.0
+torchvision==0.24.0
+torchaudio==2.7.0
+
 
 
 # ===========================
