@@ -1,4 +1,5 @@
-import streamlit as st 
+import streamlit as st
+import os
 import torch
 import torch.nn as nn
 from torchvision import models, transforms
@@ -57,7 +58,7 @@ def load_model():
         nn.Dropout(p=0.4),
         nn.Linear(num_features, len(class_names))
     )
-    model_path = r"D:\models\BrainTumorClassification\model_finetuned3.pth"
+    model_path = os.path.join(os.path.dirname(__file__), "..", "models", "model_finetuned3.pth")
     try:
         state_dict = torch.load(model_path, map_location="cpu")
         model.load_state_dict(state_dict, strict=True)
