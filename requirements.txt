@@ -1,1 +1,30 @@
+# ===========================
+# Core App Dependencies
+# ===========================
+streamlit==1.50.0
+numpy==2.3.4
+pandas==2.3.3
+opencv-python==4.10.0.84
+pillow==11.0.0
+matplotlib==3.9.2
+scikit-learn==1.5.2
+
+# ===========================
+# PyTorch and Vision Models
+# ===========================
+torch==2.5.1
+torchvision==0.20.1
+torchaudio==2.5.1
+
+# ===========================
+# Google Gemini SDK (official)
+# ===========================
+google-genai==1.2.0
+
+# ===========================
+# Optional Utilities
+# ===========================
+jinja2==3.1.6
+protobuf>=6.33.0
+tenacity==9.1.2
 
