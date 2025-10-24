@@ -4,7 +4,7 @@
 streamlit==1.50.0
 numpy==2.3.4
 pandas==2.3.3
-opencv-python==4.10.0.84
+opencv-python-headless==4.10.0.84
 pillow==11.0.0
 matplotlib==3.9.2
 scikit-learn==1.5.2
