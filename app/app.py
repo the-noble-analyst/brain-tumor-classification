@@ -137,12 +137,21 @@ if uploaded_file:
     st.markdown(f"### 🎯 **Predicted Tumor Type:** {predicted_label.title()}")
     st.markdown(f"**Confidence:** {confidence.item() * 100:.2f}%")
 
-    with st.spinner("🧩 Generating Grad-CAM..."):
-        cam = generate_gradcam(model, input_tensor, predicted_class.item())
-        img_np = np.array(image.resize((224, 224)))
-        heatmap = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
-        overlay = cv2.addWeighted(cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR), 0.6, heatmap, 0.4, 0)
-        st.image(cv2.cvtColor(overlay, cv2.COLOR_BGR2RGB), caption="🔥 Grad-CAM Tumor Focus", use_container_width=True)
+    # ==============================
+# 🔥 Conditional Grad-CAM
+# ==============================
+    if predicted_label == "notumor":
+        st.info("✅ No tumor detected. Grad-CAM visualization is disabled because no suspicious region is present.")
+    else:
+        with st.spinner("🧩 Generating Grad-CAM..."):
+            cam = generate_gradcam(model, input_tensor, predicted_class.item())
+            img_np = np.array(image.resize((224, 224)))
+            heatmap = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
+            overlay = cv2.addWeighted(cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR), 0.6, heatmap, 0.4, 0)
+            st.image(cv2.cvtColor(overlay, cv2.COLOR_BGR2RGB),
+                     caption="🔥 Grad-CAM Tumor Focus",
+                     use_container_width=True)
+
 
     st.markdown("#### 📊 Class Probabilities")
     for i, cls in enumerate(class_names):
@@ -201,6 +210,7 @@ Developed by <b>Nabeel Siddiqui</b> | EfficientNet-B0 + Grad-CAM + Gemini AI + S
 <br>Clinical Assistant Dashboard for Radiologists — powered by AI.
 </div>
 """, unsafe_allow_html=True)
+
 
 
 
